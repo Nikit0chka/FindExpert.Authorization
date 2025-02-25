@@ -17,12 +17,17 @@ public class AuthorizedSession:EntityBase, IAggregateRoot
 
     public AuthorizedSession(string refreshToken, int userId)
     {
-        RefreshToken = Guard.Against.NullOrEmpty(refreshToken, nameof(refreshToken), "Refresh token is required.");
-        UserId = Guard.Against.NegativeOrZero(userId, nameof(userId), "User id cannot be less than 0");
+        Guard.Against.NullOrEmpty(refreshToken, nameof(refreshToken), "RefreshToken is required.");
+        Guard.Against.LengthOutOfRange(refreshToken, 1, 64, nameof(refreshToken), "RefreshToken must be between 1 and 64 characters.");
+
+        RefreshToken = refreshToken;
+        UserId = Guard.Against.NegativeOrZero(userId, nameof(userId), "User id cannot be less than 0.");
+
+        CreatedAt = DateTime.UtcNow;
     }
 
     public string RefreshToken { get; private set; }
     public int UserId { get; init; }
-    public virtual User User { get; init; } = null!;
-    public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    public virtual User User { get; init; }
+    public DateTime CreatedAt { get; init; }
 }
