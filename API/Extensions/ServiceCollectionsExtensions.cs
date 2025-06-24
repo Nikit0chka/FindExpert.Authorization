@@ -1,4 +1,10 @@
-﻿using FastEndpoints;
+﻿using API.Contracts;
+using API.Endpoints.Login;
+using API.Endpoints.Logout;
+using API.Endpoints.Refresh;
+using FastEndpoints;
+using FastEndpoints.Swagger;
+using FluentValidation;
 
 namespace API.Extensions;
 
@@ -16,15 +22,24 @@ internal static class ServiceCollectionsExtensions
     {
         logger.LogInformation("Adding api services...");
 
-        logger.LogInformation("Adding swagger gen...");
-        serviceCollection.AddSwaggerGen(static c => { c.SwaggerDoc("v1", new() { Title = "My API", Version = "v1" }); });
-
-        logger.LogInformation("Adding fast endpoints...");
-        serviceCollection.AddFastEndpoints();
-
-        logger.LogInformation("Adding open api endpoints...");
+        serviceCollection.AddFastEndpoints().SwaggerDocument();
+        serviceCollection.AddValidatorsFromAssemblyContaining<RefreshValidator>();
         serviceCollection.AddOpenApi();
 
+        logger.LogInformation("Adding api mappers");
+        serviceCollection.AddApiErrorMappers();
+
         logger.LogInformation("Api services added");
+    }
+
+    /// <summary>
+    ///     Add api error mappers <see cref="IErrorMapper" />
+    /// </summary>
+    /// <param name="serviceCollection"> Service collection </param>
+    private static void AddApiErrorMappers(this IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddScoped<LoginErrorMapper>();
+        serviceCollection.AddScoped<LogoutErrorMapper>();
+        serviceCollection.AddScoped<RefreshErrorMapper>();
     }
 }

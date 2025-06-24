@@ -8,11 +8,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Domain\Domain.csproj"/>
+        <ProjectReference Include="..\HttpClients\HttpClients.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Ardalis.SharedKernel"/>
-        <PackageReference Include="Ardalis.Result"/>
     </ItemGroup>
-
 </Project>

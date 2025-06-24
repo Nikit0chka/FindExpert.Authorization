@@ -13,9 +13,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0164F0E7-95F2-41BB-AEF7-C2FCB5BD9E88}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		FindExpert.sln.DotSettings = FindExpert.sln.DotSettings
 		Directory.Packages.props = Directory.Packages.props
+		FindExpert.Authorization.sln.DotSettings = FindExpert.Authorization.sln.DotSettings
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClients", "HttpClients\HttpClients.csproj", "{84D3D950-B60A-4B29-AFDA-12188F4A564A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,11 +45,16 @@ Global
 		{D7B0CA1F-6D3C-4085-B71B-1BCB1AD00B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B0CA1F-6D3C-4085-B71B-1BCB1AD00B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B0CA1F-6D3C-4085-B71B-1BCB1AD00B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D3D950-B60A-4B29-AFDA-12188F4A564A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D3D950-B60A-4B29-AFDA-12188F4A564A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D3D950-B60A-4B29-AFDA-12188F4A564A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D3D950-B60A-4B29-AFDA-12188F4A564A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0E4DA060-919F-426E-893B-E9DCEF081498} = {28469E3E-ED5C-4764-B533-5F40FB4CD7BD}
 		{6746BED2-1DF1-48A5-857F-5DDA092DDAB9} = {28469E3E-ED5C-4764-B533-5F40FB4CD7BD}
 		{86C4006E-94A4-4A79-8F58-8A7DB79F8003} = {28469E3E-ED5C-4764-B533-5F40FB4CD7BD}
 		{D7B0CA1F-6D3C-4085-B71B-1BCB1AD00B4C} = {28469E3E-ED5C-4764-B533-5F40FB4CD7BD}
+		{84D3D950-B60A-4B29-AFDA-12188F4A564A} = {28469E3E-ED5C-4764-B533-5F40FB4CD7BD}
 	EndGlobalSection
 EndGlobal

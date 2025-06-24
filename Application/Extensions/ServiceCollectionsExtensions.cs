@@ -1,4 +1,4 @@
-﻿using Application.CQRS.Authorization.Commands;
+﻿using Application.CQRS.Authorization.Login;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -19,7 +19,7 @@ public static class ServiceCollectionsExtensions
         logger.LogInformation("Adding application services...");
 
         logger.LogInformation("Adding mediator...");
-        serviceCollection.AddMediatR(static cfg => cfg.RegisterServicesFromAssembly(typeof(LoginCommand).Assembly));
+        serviceCollection.AddMediatR(static cfg => cfg.RegisterServicesFromAssembly(typeof(LoginCommandResult).Assembly));
 
         logger.LogInformation("Application services added");
     }

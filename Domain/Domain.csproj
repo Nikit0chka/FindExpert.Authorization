@@ -8,11 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Ardalis.SmartEnum"/>
         <PackageReference Include="Ardalis.Specification.EntityFrameworkCore"/>
         <PackageReference Include="Ardalis.SharedKernel"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational"/>
+        <PackageReference Include="JetBrains.Annotations"/>
     </ItemGroup>
 
 </Project>

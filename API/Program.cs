@@ -2,12 +2,13 @@ using API.Extensions;
 using API.Middlewares;
 using Application.Extensions;
 using FastEndpoints;
+using FastEndpoints.Swagger;
+using HttpClients.Extensions;
 using Infrastructure.Extensions;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Настройка Serilog
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
@@ -15,33 +16,19 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-var loggerFactory = LoggerFactory.Create(static loggingBuilder =>
-{
-    loggingBuilder.AddSerilog(); // Интеграция Serilog
-});
+var loggerFactory = LoggerFactory.Create(static loggingBuilder => { loggingBuilder.AddSerilog(); });
 
-var logger = loggerFactory.CreateLogger("Program");
+var logger = loggerFactory.CreateLogger<Program>();
 
 builder.Services.AddApiServices(logger);
 builder.Services.AddInfrastructureServices(builder.Configuration, logger);
 builder.Services.AddApplicationServices(logger);
+builder.Services.AddHttpClients(logger);
 
 var app = builder.Build();
 
-app.UseSwagger();
 app.UseMiddleware<RequestLoggingMiddleware>();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
+app.UseFastEndpoints().UseSwaggerGen();
 
-    app.UseSwaggerUI(static c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        c.RoutePrefix = string.Empty;
-    });
-}
-
-app.UseFastEndpoints();
 app.Run();

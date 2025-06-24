@@ -1,6 +1,11 @@
 ﻿namespace API.Middlewares;
 
-public sealed class RequestLoggingMiddleware(RequestDelegate next, ILogger<RequestLoggingMiddleware> logger)
+/// <summary>
+///     Middleware for logging request
+/// </summary>
+/// <param name="next"> </param>
+/// <param name="logger"> </param>
+internal sealed class RequestLoggingMiddleware(RequestDelegate next, ILogger<RequestLoggingMiddleware> logger)
 {
     public async Task InvokeAsync(HttpContext context)
     {

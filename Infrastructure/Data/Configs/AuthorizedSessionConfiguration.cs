@@ -1,17 +1,19 @@
-﻿using Domain.AggregatesModel.AuthorizedSessionAggregate;
+﻿using Domain.AggregateModels.SessionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.Configs;
 
-public class AuthorizedSessionConfiguration:IEntityTypeConfiguration<AuthorizedSession>
+/// <inheritdoc />
+/// <summary>
+///     Authorized session entity ef core configuration <see cref="Session" /> />
+/// </summary>
+internal class AuthorizedSessionConfiguration:IEntityTypeConfiguration<Session>
 {
-    public void Configure(EntityTypeBuilder<AuthorizedSession> builder)
+    public void Configure(EntityTypeBuilder<Session> builder)
     {
         builder.Property(static session => session.RefreshToken)
-            .HasMaxLength(64)
+            .HasMaxLength(SessionConstants.TokenMaxLength)
             .IsRequired();
-
-        builder.HasOne(static session => session.User).WithMany(static user => user.AuthorizedSessions);
     }
 }
